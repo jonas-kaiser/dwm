@@ -1,7 +1,7 @@
 void
 focusmaster(const Arg *arg)
 {
-	Client *c = NULL, *i;
+	Client *c = NULL;
 
 	if (!selmon->sel)
 		return;
