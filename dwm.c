@@ -856,7 +856,7 @@ drawbar(Monitor *m)
 		int count  = 0;
 		int cwidth = TEXTW("a") - lrpad;
 		for (char *h = stext; *h != '\0'; h++)
-			if (*h < 0x20) count++;
+			if (*h >= 0x01 && *h < 0x20) count++;
 		sw -= count * cwidth;
 		while (1) {
 			//fprintf(stderr, "char: %d\tsw = %d\n", *ts, sw);
