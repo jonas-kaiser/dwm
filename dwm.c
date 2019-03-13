@@ -852,7 +852,14 @@ drawbar(Monitor *m)
 	if (m == selmon) { /* status is only drawn on selected monitor */
 		drw_setscheme(drw, scheme[SchemeNorm]);
 		sw = TEXTW(stext) - lrpad / 2 + 2; /* 2px right padding */
+		/* count invisible chars (0x01 - 0x19) and substract them from the text length */
+		int count  = 0;
+		int cwidth = TEXTW("a") - lrpad;
+		for (char *h = stext; *h != '\0'; h++)
+			if (*h < 0x20) count++;
+		sw -= count * cwidth;
 		while (1) {
+			//fprintf(stderr, "char: %d\tsw = %d\n", *ts, sw);
 			if ((unsigned int)*ts > LENGTH(colors)) { ts++; continue ; }
 			ctmp = *ts;
 			*ts = '\0';
@@ -2376,7 +2383,9 @@ updatesystray(void)
 	}
 	w = w ? w + systrayspacing : 1;
 	x -= w;
+	//NOTE space is made but nothing drawn yet
 	XMoveResizeWindow(dpy, systray->win, x, m->by, w, bh);
+	//NOTE here the systray is drawn
 	wc.x = x; wc.y = m->by; wc.width = w; wc.height = bh;
 	wc.stack_mode = Above; wc.sibling = m->barwin;
 	XConfigureWindow(dpy, systray->win, CWX|CWY|CWWidth|CWHeight|CWSibling|CWStackMode, &wc);
