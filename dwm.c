@@ -699,10 +699,10 @@ drawbar(Monitor *m)
 	int boxs = drw->fonts->h / 9;
 	int boxw = drw->fonts->h / 6 + 2;
 	unsigned int i, occ = 0, urg = 0;
-    char *ts = stext;
-    char *tp = stext;
-    int tx = 0;
-    char ctmp;
+	char *ts = stext;
+	char *tp = stext;
+	int tx = 0;
+	char ctmp;
 	Client *c;
 
 	/* draw status first so it can be overdrawn by tags later */
