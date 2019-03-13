@@ -31,13 +31,15 @@ static const char *colors[][3]      = {
 	[SchemeSel]  = { col_gray4, col_green, col_red   },
 	[SchemeWarn]   = { col_black, col_yellow, col_red   },
 	[SchemeUrgent] = { col_white, col_red,    col_red   },
+	[SchemeCol5]   = { col_red, col_gray1, col_red },
 };
 static const unsigned int alphas[][3]      = {
 	/*               fg      bg        border     */
 	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
-	[SchemeWarn] = { OPAQUE, baralpha, borderalpha },
-	[SchemeUrgent]  = { OPAQUE, baralpha, borderalpha },
+	[SchemeWarn] = { OPAQUE, 0xff, 0xff },
+	[SchemeUrgent]  = { OPAQUE, 0x00, borderalpha },
+	[SchemeCol5]  = { OPAQUE, 0xd1, borderalpha },
 };
 
 /* tagging */
