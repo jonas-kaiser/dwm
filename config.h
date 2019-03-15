@@ -26,24 +26,25 @@ static const char col_white[]       = "#ffffff";
 static const unsigned int baralpha = 0xd1;      // should be about 80% (to look like xdefaults)
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_green, col_red   },
+	/*                 fg         bg          border   */
+	[SchemeNorm]   = { col_gray3, col_gray1,  col_gray2 },
+	[SchemeSel]    = { col_gray4, col_green,  col_red   },
 	[SchemeWarn]   = { col_black, col_yellow, col_red   },
 	[SchemeUrgent] = { col_white, col_red,    col_red   },
-	[SchemeCol5]   = { col_red, col_gray1, col_red },
+	[SchemeCol5]   = { col_red,   col_gray1,  col_red   },
 };
 static const unsigned int alphas[][3]      = {
-	/*               fg      bg        border     */
-	[SchemeNorm] = { OPAQUE, baralpha, borderalpha },
-	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
-	[SchemeWarn] = { OPAQUE, 0xff, 0xff },
-	[SchemeUrgent]  = { OPAQUE, 0x00, borderalpha },
-	[SchemeCol5]  = { OPAQUE, 0xd1, borderalpha },
+	/*                 fg      bg        border     */
+	[SchemeNorm]   = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]    = { OPAQUE, baralpha, borderalpha },
+	[SchemeWarn]   = { OPAQUE, 0xff,     0xff        },
+	[SchemeUrgent] = { OPAQUE, 0x00,     borderalpha },
+	[SchemeCol5]   = { OPAQUE, 0xd1,     borderalpha },
 };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
+//static const char *tags[] = { "main", "2", "web", "docs", "images", "video", "7", "gimp", "steam" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -84,12 +85,16 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "urxvtc", NULL };
 
+static const char *lockscreen[] = {"mylock", NULL};
+
 #include "movestack.c"
 #include "focusmaster.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	//{ MODKEY,                       XK_x,      spawn,          {.v = (const char*[]){"mylock", NULL} } },
+	{ MODKEY,                       XK_x,      spawn,          {.v = lockscreen } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -104,6 +109,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
 	{ MODKEY,                       XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_f,      setlayout,      {.v = &layouts[1]} },
 	/* mod + f is now fullscreen and mod + m selects the master window */
 	//{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	//{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
