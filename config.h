@@ -23,7 +23,8 @@ static const char col_green[]       = "#273234"; // darkgreen
 static const char col_red[]         = "#ff0000";
 static const char col_yellow[]      = "#ffff00";
 static const char col_white[]       = "#ffffff";
-static const unsigned int baralpha = 0xd1;      // should be about 80% (to look like xdefaults)
+//static const unsigned int baralpha = 0xd1;      // should be about 80% (to look like xdefaults)
+static const unsigned int baralpha = 0x80;
 static const unsigned int borderalpha = OPAQUE;
 static const char *colors[][3]      = {
 	/*                 fg         bg          border   */
@@ -38,7 +39,7 @@ static const unsigned int alphas[][3]      = {
 	[SchemeNorm]   = { OPAQUE, baralpha, borderalpha },
 	[SchemeSel]    = { OPAQUE, baralpha, borderalpha },
 	[SchemeWarn]   = { OPAQUE, 0xff,     0xff        },
-	[SchemeUrgent] = { OPAQUE, 0x00,     borderalpha },
+	[SchemeUrgent] = { OPAQUE, 0x80,     borderalpha },
 	[SchemeCol5]   = { OPAQUE, 0xd1,     borderalpha },
 };
 
@@ -52,12 +53,23 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 1,       0,           -1 },
+	/* class         instance    title       tags mask     isfloating   monitor */
+	{ "Pavucontrol", NULL,       NULL,       0,            1,           -1 },
+	{ "Firefox",     NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "Zathura",     NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "feh",         NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "Sxiv",        NULL,       NULL,       1 << 3,       0,           -1 },
+	{ "mpv",         NULL,       NULL,       1 << 4,       0,           -1 },
+	{ "Gimp",        NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "Pinta",       NULL,       NULL,       1 << 5,       0,           -1 },
+	/* Make all steam windows float except for the main window */
+	{ "Steam",       NULL,       NULL,       1 << 5,       1,           -1 },
+	{ "Steam",       NULL,       "Steam",    1 << 5,       0,           -1 },
+	{ "Steam",       NULL,       "Steam ",   1 << 5,       1,           -1 },
+
 };
 
-/* layout(s) */
+/* layout(trues) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
@@ -97,6 +109,8 @@ static const char *umountcmd[]     = { "dmenu_umount", NULL };
 static const char *displayoffcmd[] = { "xset", "dpms", "force", "off", NULL };
 static const char *scrotcmd[]      = { "scrot", NULL };
 
+static const char *launchbrowser[] = { "firefox", NULL };
+
 static const char *volumeup[]      = { "volume", "up", "3",  NULL };
 static const char *volumedown[]    = { "volume", "down", "3",  NULL };
 static const char *volumemute[]    = { "volume", "mute",  NULL };
@@ -119,10 +133,16 @@ static Key keys[] = {
 	{ 0,                            XK_Pause,  spawn,          {.v = displayoffcmd } },
 	{ 0,                            XK_Print,  spawn,          {.v = scrotcmd } },
 	{ 0,     XF86XK_AudioRaiseVolume,          spawn,          {.v = volumeup } },
+	{ MODKEY,                       XK_Up,     spawn,          {.v = volumeup } },
 	{ 0,     XF86XK_AudioLowerVolume,          spawn,          {.v = volumedown } },
+	{ MODKEY,                       XK_Down,   spawn,          {.v = volumedown } },
 	{ 0,     XF86XK_AudioMute,                 spawn,          {.v = volumemute } },
+	{ MODKEY,                       XK_F8,     spawn,          {.v = volumemute } },
 	{ 0,     XF86XK_MonBrightnessUp,           spawn,          {.v = backlightup } },
+	{ MODKEY,                       XK_Right,  spawn,          {.v = backlightup } },
 	{ 0,     XF86XK_MonBrightnessDown,         spawn,          {.v = backlightdown } },
+	{ MODKEY,                       XK_Left,   spawn,          {.v = backlightdown } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = launchbrowser } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
