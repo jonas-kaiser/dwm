@@ -1398,7 +1398,7 @@ movemouse(const Arg *arg)
 	}
 }
 
- Client *
+Client *
 nexttagged(Client *c) {
 	Client *walked = c->mon->clients;
 	for(;
