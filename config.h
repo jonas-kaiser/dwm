@@ -66,6 +66,9 @@ static const Rule rules[] = {
 	{ "Steam",       NULL,       NULL,       1 << 5,       1,           -1 },
 	{ "Steam",       NULL,       "Steam",    1 << 5,       0,           -1 },
 	{ "Steam",       NULL,       "Steam ",   1 << 5,       1,           -1 },
+	/* Fix pdfpc not appearing on the second monitor */
+	{ "Pdfpc",       NULL,       NULL,       1 << 5,       0,           1 },
+	{ "Pdfpc",       NULL,      "presenter" ,1 << 5,       0,           0 },
 
 };
 
