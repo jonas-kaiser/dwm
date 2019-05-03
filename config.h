@@ -118,6 +118,7 @@ static const char *backlightup[]   = { "backlight_wrapper", "-inc", NULL };
 static const char *backlightdown[] = { "backlight_wrapper", "-dec", NULL };
 
 #include "movestack.c"
+#include "moveresize.c"
 #include "focusmaster.c"
 #include <X11/XF86keysym.h>
 static Key keys[] = {
@@ -152,6 +153,14 @@ static Key keys[] = {
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
 	{ MODKEY|ShiftMask,             XK_j,      movestack,      {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_k,      movestack,      {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_y,      moveresize,     {.v = (int []){ -25, 0, 0, 0 }}},
+	{ MODKEY|ShiftMask,             XK_u,      moveresize,     {.v = (int []){ 0, 25, 0, 0 }}},
+	{ MODKEY|ShiftMask,             XK_i,      moveresize,     {.v = (int []){ 0, -25, 0, 0 }}},
+	{ MODKEY|ShiftMask,             XK_o,      moveresize,     {.v = (int []){ 25, 0, 0, 0 }}},
+	{ MODKEY|ControlMask,           XK_y,      moveresize,     {.v = (int []){ 0, 0, -25, 0 }}},
+	{ MODKEY|ControlMask,           XK_u,      moveresize,     {.v = (int []){ 0, 0, 0, 25 }}},
+	{ MODKEY|ControlMask,           XK_i,      moveresize,     {.v = (int []){ 0, 0, 0, -25 }}},
+	{ MODKEY|ControlMask,           XK_o,      moveresize,     {.v = (int []){ 0, 0, 25, 0 }}},
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
