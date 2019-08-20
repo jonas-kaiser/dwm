@@ -55,13 +55,14 @@ static const Rule rules[] = {
 	 */
 	/* class         instance    title       tags mask     isfloating   monitor */
 	{ "Pavucontrol", NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",     NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "firefox",     NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "Zathura",     NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "feh",         NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Sxiv",        NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "mpv",         NULL,       NULL,       1 << 4,       0,           -1 },
 	{ "Gimp",        NULL,       NULL,       1 << 5,       0,           -1 },
 	{ "Pinta",       NULL,       NULL,       1 << 5,       0,           -1 },
+	{ "Minecraft",   NULL,       NULL,       1 << 5,       0,           -1 },
 	/* Make all steam windows float except for the main window */
 	{ "Steam",       NULL,       NULL,       1 << 5,       1,           -1 },
 	{ "Steam",       NULL,       "Steam",    1 << 5,       0,           -1 },
