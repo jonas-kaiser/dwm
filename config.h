@@ -56,6 +56,7 @@ static const Rule rules[] = {
 	/* class         instance    title       tags mask     isfloating   monitor */
 	{ "Pavucontrol", NULL,       NULL,       0,            1,           -1 },
 	{ "firefox",     NULL,       NULL,       1 << 1,       0,           -1 },
+	{ "qutebrowser", NULL,       NULL,       1 << 1,       0,           -1 },
 	{ "Zathura",     NULL,       NULL,       1 << 2,       0,           -1 },
 	{ "feh",         NULL,       NULL,       1 << 3,       0,           -1 },
 	{ "Sxiv",        NULL,       NULL,       1 << 3,       0,           -1 },
