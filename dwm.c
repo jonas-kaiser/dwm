@@ -1036,7 +1036,9 @@ focusstack(const Arg *arg)
 {
 	Client *c = NULL, *i;
 
-	if (!selmon->sel || selmon->sel->isfullscreen)
+	// disable alwaysfullscreen because it makes no sense with fakefullscreen
+	//if (!selmon->sel || selmon->sel->isfullscreen)
+	if (!selmon->sel)
 		return;
 	if (arg->i > 0) {
 		for (c = selmon->sel->next; c && !ISVISIBLE(c); c = c->next);
