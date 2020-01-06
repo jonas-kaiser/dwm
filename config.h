@@ -133,7 +133,9 @@ static Key keys[] = {
 	//{ MODKEY,                       XK_x,      spawn,          {.v = (const char*[]){"mylock", NULL} } },
 	{ MODKEY,                       XK_x,      spawn,          {.v = lockscreencmd } },
 	{ MODKEY|ShiftMask,             XK_x,      spawn,          {.v = shutdowncmd } },
-	{ MODKEY,                       XK_F5,     spawn,          {.v = displayselcmd } },
+	// use F7 instead to free F1-F6 for toggleing tags
+	//{ MODKEY,                       XK_F5,     spawn,          {.v = displayselcmd } },
+	{ MODKEY,                       XK_F7,     spawn,          {.v = displayselcmd } },
 	{ MODKEY,                       XK_F9,     spawn,          {.v = mountcmd } },
 	{ MODKEY,                       XK_F10,    spawn,          {.v = umountcmd } },
 	{ 0,                            XK_Pause,  spawn,          {.v = displayoffcmd } },
@@ -200,6 +202,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+	{ MODKEY,                       XK_F1,     toggleview,     {.ui = 1 << 0} },
+	{ MODKEY,                       XK_F2,     toggleview,     {.ui = 1 << 1} },
+	{ MODKEY,                       XK_F3,     toggleview,     {.ui = 1 << 2} },
+	{ MODKEY,                       XK_F4,     toggleview,     {.ui = 1 << 3} },
+	{ MODKEY,                       XK_F5,     toggleview,     {.ui = 1 << 4} },
+	{ MODKEY,                       XK_F6,     toggleview,     {.ui = 1 << 5} },
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 
